@@ -1,0 +1,11 @@
+#!/bin/sh
+aapt=`find $ANDROID_HOME/build-tools -name "aapt" |head -n 1`
+for i in $@ 
+do
+  info=`$aapt d badging $i`;
+  name=`echo $info |sed -n "s/.*application: label='\([^']*\)'.*/\1/p"`
+  version=`echo $info |sed -n "s/.*\(versionCode='[^']*'.*versionName='[^']*'\).*/\1/p"`
+  echo $i: $name $version
+done
+
+
