@@ -1,0 +1,10 @@
+#!/bin/bash
+
+start=`date +%s.%N`
+
+for file in `find $1 -type f -name "*.java" -o -name "*.xml"`; do git blame --line-porcelain $file|sed -n 's/^author //p'; done |sort |uniq -c |sort -rn
+
+#for file in `find $1 -type f -name "*.java" -o -name "*.xml"`; do git blame -c $file|perl -pe 's/^[^\(]+\(\s*+([^\s]+)\s.+/\1/g'; done |sort |uniq -c |sort -rn
+
+end=`date +%s.%N`
+echo 统计共耗时`echo "$end - $start" |bc -l`秒
