@@ -12,14 +12,18 @@ storePass=$3
 keyAlias=$4
 keyPass=$5
 
-echo "align apk"
-unaligned=${file}unaligned
-mv $file $unaligned && zipalign -v -p 4 $unaligned $file && rm $unaligned
+source `dirname $0`/common.sh
 
+echo "align apk"
+zipaligncmd=android_cmd zipalign
+unaligned=${file}unaligned
+mv $file $unaligned && $zipaligncmd -v -p 4 $unaligned $file && rm $unaligned
+
+apksignercmd=android_cmd apksigner
 echo "apksigner signning apk"
-apksigner sign --ks $storeFile --ks-pass pass:$storePass \
+$apksignercmd sign --ks $storeFile --ks-pass pass:$storePass \
   --ks-key-alias $keyAlias -key-pass pass:$keyPass \
-  --v1-signning-enabled true \
-  --v2-signning-enabled true \
+  --v1-signing-enabled true \
+  --v2-signing-enabled true \
   $file
 
