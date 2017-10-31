@@ -14,7 +14,7 @@ keyPass=$5
 
 source `dirname $0`/common.sh
 
-zipaligncmd=android_cmd zipalign
+zipaligncmd=`android_cmd zipalign`
 echo "Alignning ${file} with zipalign..."
 unaligned=${file}unaligned
 mv $file $unaligned && $zipaligncmd -v -p 4 $unaligned $file && rm $unaligned

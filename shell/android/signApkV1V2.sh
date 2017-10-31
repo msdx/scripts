@@ -15,11 +15,11 @@ keyPass=$5
 source `dirname $0`/common.sh
 
 echo "align apk"
-zipaligncmd=android_cmd zipalign
+zipaligncmd=`android_cmd zipalign`
 unaligned=${file}unaligned
 mv $file $unaligned && $zipaligncmd -v -p 4 $unaligned $file && rm $unaligned
 
-apksignercmd=android_cmd apksigner
+apksignercmd=`android_cmd apksigner`
 echo "apksigner signning apk"
 $apksignercmd sign --ks $storeFile --ks-pass pass:$storePass \
   --ks-key-alias $keyAlias -key-pass pass:$keyPass \

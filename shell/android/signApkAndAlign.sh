@@ -23,7 +23,7 @@ if [[ ! $rtn -eq 0 ]]; then
   exit $rtn
 fi
 
-zipaligncmd=android_cmd zipalign
+zipaligncmd=`android_cmd zipalign`
 echo "Alignning ${file} with zipalign..."
 unaligned=${file}unaligned
 mv $file $unaligned && $zipaligncmd -f -v 4 $unaligned $file && rm $unaligned 
