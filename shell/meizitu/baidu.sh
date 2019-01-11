@@ -11,6 +11,9 @@ fi
 row=60
 save=1
 echo $max
+if [ ! -d "$search" ]; then
+  mkdir $search
+fi
 for pn in `seq 0 $row $max`; do
   url="http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&word=${search}&cg=girl&pn=${pn}&rn=${row}&itg=0&z=0&fr=&width=&height=&lm=-1&ic=0&s=0&st=-1&gsm=1e0000001e"
   echo $url
